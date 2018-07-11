@@ -1,7 +1,7 @@
 library(flowCore)
 library(Biobase)
 
-add.keyword.to.fcs <- function(fcs, added.keyword, added.keyword.name)
+add.keyword.to.fcs <- function(fcs, added.keyword, added.keyword.name) 
 {
     fcs.out <- fcs
     fcs.out@description <- c(fcs.out@description,added.keyword)

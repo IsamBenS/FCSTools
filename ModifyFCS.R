@@ -56,3 +56,21 @@ get.keywords.with.keypart.FCS <- function(fcs, key.part)
     
     return(keywords.list)
 }
+
+generate.FCS.files.from.clusters <- function(fcs, cluster.col)
+{
+    clusters.ids <- unique(fcs@exprs[,cluster.col])
+    fcs.list <- list(1:cluster.ids)
+    descR <- description(fcs)
+    
+    for (i in clusters.ids) 
+    {
+        events.ids <- which(fcs@exprs[,cluster.col] == i)
+        if(length(events.ids) > 0)
+        {
+            tmp.matrix <- fcs@exprs[events.ids,]
+            fcs.list <- c(fcs.list, flowFrame(tmp.matrix, description = descR))
+        }
+    }
+    return(fcs.list)
+}
